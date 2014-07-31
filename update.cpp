@@ -25,12 +25,12 @@ int WINAPI WinMain(HINSTANCE inst, HINSTANCE prev, LPSTR cmdline, int show) {
 		pUpdater->SetPath(exePath);
 		Properties properties;
 		properties.SafeLoad(filepath);
-		pUpdater->SetHost(properties.GetString("host", "192.168.1.115"));
-		pUpdater->SetIpPort(properties.GetInteger("port", 8888));
+		pUpdater->SetHost(properties.GetString("host", "192.168.0.137"));
+		pUpdater->SetIpPort(properties.GetInteger("port", 8088));
 		pUpdater->SetInterval(
 				properties.GetInteger("interval", 1000 * 60 * 30));
 		pUpdater->SetUrl(properties.GetString("url", "/bank/client"));
-		pUpdater->SetApplication("terminal.exe");
+		pUpdater->SetApplication("mediac.exe");
 		void* handle = ThreadCreator::StartThread(pUpdater);
 		WaitForSingleObject(handle, INFINITE);
 	}

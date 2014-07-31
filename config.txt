@@ -1,4 +1,4 @@
-host=192.168.1.115
-interval=1000*60*2
-port=8888
+host=192.168.0.137
+interval=60000
+port=8088
 url=/bank/client
