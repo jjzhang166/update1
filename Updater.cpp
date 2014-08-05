@@ -10,7 +10,7 @@
 #include <cpputils/ThreadCreator.h>
 #include <windows.h>
 
-Updater::Updater() {
+Updater::Updater() : interval(60000), port(8088) {
 	this->running = false;
 }
 
@@ -72,6 +72,11 @@ void Updater::Run() {
 					Util::Unzip(path + "client.zip", path);
 				}
 			}
+		}
+
+		if (Util::ProcessCount(application) == 0) {
+			string exe = path + application;
+			Util::ShellExecuteNoWait(exe);
 		}
 
 		Sleep(interval);

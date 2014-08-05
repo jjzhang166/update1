@@ -1,4 +1,5 @@
-host=192.168.0.137
+host=192.168.0.100
 interval=60000
 port=8088
 url=/bank/client
+application=mediac.exe
