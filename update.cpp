@@ -14,17 +14,11 @@
 #include "Updater.h"
 
 int WINAPI WinMain(HINSTANCE inst, HINSTANCE prev, LPSTR cmdline, int show) {
-	TCHAR exePath[MAX_PATH];
-	char filepath[MAX_PATH];
 	if (Util::ProcessCount("update.exe") <= 1) {
 		Updater* pUpdater = new Updater();
-		GetModuleFileName(NULL, exePath, MAX_PATH);
-		(strrchr(exePath, '\\'))[0] = 0;
-		sprintf(filepath, "%s\\config.txt", exePath);
-		sprintf(exePath, "%s\\", exePath);
-		pUpdater->SetPath(exePath);
+		pUpdater->SetPath(Util::GetCurrentPath() + "\\");
 		Properties properties;
-		properties.SafeLoad(filepath);
+		properties.SafeLoad(Util::GetCurrentPath() + "\\update.cfg");
 		pUpdater->SetHost(properties.GetString("host", "192.168.0.100"));
 		pUpdater->SetIpPort(properties.GetInteger("port", 8088));
 		pUpdater->SetInterval(
